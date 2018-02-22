@@ -16,7 +16,8 @@ System.out.println("Server running");
         ServerSocket server=null;
 
         /* Create local bind point */
-       try {
+       try
+       {
            server = new ServerSocket(MYPORT);
        }
        catch(IOException e)
@@ -30,7 +31,8 @@ System.out.println("Server running");
                 ServerThread S= new ServerThread(socket);
                 S.start();
                }
-            catch (IOException e) {
+            catch (IOException e)
+            {
                 System.out.println("ERROR:" + e);
             }
 
@@ -59,21 +61,18 @@ System.out.println("Server running");
                 System.out.println("error in server thread");
             }
 
-            try {
+            try
+            {
                 message = is.readLine();
-               // while (message.compareTo("QUIT") != 0) {
-                    os.print(message);
-                    //System.out.println(message);
-
-                    httpRead process= new httpRead(message);
-                    String newmsg=process.response();
-                    os.flush();
-                    os.print(newmsg);
-                   // System.out.println(process);
-
-                    message = is.readLine();
-              //  }
-            } catch (IOException e) {
+                os.print(message);
+                httpRead process= new httpRead(message);
+                String contents=process.response();
+                os.flush();
+                os.print(contents);
+                message = is.readLine();
+            }
+            catch (IOException e)
+            {
                 message = this.getName();
                 System.out.println("Client" + message + "closed");
             }
