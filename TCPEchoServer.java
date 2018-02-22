@@ -2,7 +2,7 @@ import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.*;
 import java.net.*;
-import httpRead;
+//import httpRead;
 
 public class TCPEchoServer {
     public static final int BUFSIZE= 1024;
@@ -12,7 +12,7 @@ public class TCPEchoServer {
         byte[] buf= new byte[BUFSIZE];
 System.out.println("Server running");
         /* Create socket */
-        Socket socket= null;//(args[0], Integer.parseInt(args[1]));
+        Socket socket= null;
         ServerSocket server=null;
 
         /* Create local bind point */
@@ -33,7 +33,7 @@ System.out.println("Server running");
             catch (IOException e) {
                 System.out.println("ERROR:" + e);
             }
-          //  new ServerThread(socket).start();
+
         }
 
         }
@@ -49,9 +49,7 @@ System.out.println("Server running");
 
 
         public void run() {
-            //BufferedReader buff=null;
-            //InputStream in=null;
-            //DataOutputStream out=null;
+
             try {
                 is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 os = new PrintWriter(socket.getOutputStream());
