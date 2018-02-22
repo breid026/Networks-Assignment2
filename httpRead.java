@@ -2,24 +2,57 @@ import java.io.IOException;
 
 public class httpRead {
 
-    private String command;
 
+    private String command;
+    int code=200;
+    String phrase="OK";
     public httpRead(String command)
     {
         this.command=command;
     }
-    public String returnMSG;
-    public static void http() throws IOException {
-        //if(CHECK FOR VALID REQUEST)
+    public String returnMSG="HTTP/1.0 ";
+    public void http() throws IOException {
+        boolean found=true;
+        if (isValid())
+        {
+            //FIND FILE AND ADD TO returnMSG
+            //IF FILE NOT FOUND CHANGE BOOLEAN FOUND TO FALSE
 
-        //else
-        //SEND VALID HEADER TO BROWSER CLIENT
+            if(found!=true)
+            {}
+        }
+        else
+        {
+            //SEND ERROR MESSAGE OR DO NOTHING?
+        }
+    }
+    public String response()
+    {
+        String returncode=Integer.toString(code);
+        returnMSG+=returncode+" "+phrase+"\n";
+        return returnMSG;
 
     }
 
-    public String response()
+    public boolean isValid()
     {
-        return returnMSG;
+        boolean valid=true;
+        //DETERMINE IF COMMAND IS VALID HTTP
+        //DETERMINE IF CLIENT HAS AUTHORIZATION
+        //CHANGE CODE ACCORDINGLY(200,403,404 etc)
+        setHeader(valid);
+        return valid;
 
+    }
+
+    public String setHeader(boolean valid)
+    {
+        if (valid!=true)
+        {
+            //CHANGE PHRASE TO BE NOT OK
+            //CHANGE PHRASE ACCORDINGLY
+        }
+
+        return returnMSG;
     }
 }
