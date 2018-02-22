@@ -17,6 +17,8 @@ System.out.println("Server running");
 
         /* Create local bind point */
        try
+
+
        {
            server = new ServerSocket(MYPORT);
        }
@@ -60,7 +62,6 @@ System.out.println("Server running");
             } catch (IOException e) {
                 System.out.println("error in server thread");
             }
-
             try
             {
                 message = is.readLine();
