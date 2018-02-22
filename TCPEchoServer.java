@@ -12,7 +12,7 @@ public class TCPEchoServer {
         byte[] buf= new byte[BUFSIZE];
 System.out.println("Server running");
         /* Create socket */
-        Socket socket= null;//(args[0], Integer.parseInt(args[1]));
+        Socket socket= null;
         ServerSocket server=null;
 
         /* Create local bind point */
@@ -33,7 +33,6 @@ System.out.println("Server running");
             catch (IOException e) {
                 System.out.println("ERROR:" + e);
             }
-          //  new ServerThread(socket).start();
         }
 
         }
@@ -49,33 +48,27 @@ System.out.println("Server running");
 
 
         public void run() {
-            //BufferedReader buff=null;
-            //InputStream in=null;
-            //DataOutputStream out=null;
-            try {
+            try
+            {
                 is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 os = new PrintWriter(socket.getOutputStream());
                 os.write(message);
-
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 System.out.println("error in server thread");
             }
 
             try {
                 message = is.readLine();
-               // while (message.compareTo("QUIT") != 0) {
-                    os.print(message);
-                    //System.out.println(message);
-
-                    httpRead process= new httpRead(message);
-                    String newmsg=process.response();
-                    os.flush();
-                    os.print(newmsg);
-                   // System.out.println(process);
-
-                    message = is.readLine();
-              //  }
-            } catch (IOException e) {
+                os.print(message);
+                httpRead process = new httpRead(message);
+                String contents = process.response();
+                os.flush();
+                os.print(contents);
+                message = is.readLine();
+            }
+            catch (IOException e) {
                 message = this.getName();
                 System.out.println("Client" + message + "closed");
             }
