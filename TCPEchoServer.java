@@ -17,8 +17,6 @@ System.out.println("Server running");
 
         /* Create local bind point */
        try
-
-
        {
            server = new ServerSocket(MYPORT);
        }
@@ -70,11 +68,11 @@ System.out.println("Server running");
                 String contents=process.response();
                 os.flush();
                 os.print(contents);
-                message = is.readLine();
+
             }
             catch (IOException e)
             {
-                message = this.getName();
+               // message = this.getName();
                 System.out.println("Client" + message + "closed");
             }
         }}}

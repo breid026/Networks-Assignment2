@@ -4,25 +4,32 @@ public class httpRead {
 
 
     private String command;
-
+    int code=200;
+    String phrase="OK";
     public httpRead(String command)
     {
         this.command=command;
     }
-    public String returnMSG;
+    public String returnMSG="HTTP/1.0 ";
     public void http() throws IOException {
-
+        boolean found=true;
         if (isValid())
         {
-            //FIND FILE AND SET returnMSG = FILE CONTENTS WITH A VALID HEADER
+            //FIND FILE AND ADD TO returnMSG
+            //IF FILE NOT FOUND CHANGE BOOLEAN FOUND TO FALSE
+
+            if(found!=true)
+            {}
         }
         else
             {
-           //SET returnMSG = ERROR MESSAGE
+           //SEND ERROR MESSAGE OR DO NOTHING?
             }
     }
     public String response()
     {
+        String returncode=Integer.toString(code);
+        returnMSG+=returncode+" "+phrase+"\n";
         return returnMSG;
 
     }
@@ -31,6 +38,8 @@ public class httpRead {
     {
         boolean valid=true;
         //DETERMINE IF COMMAND IS VALID HTTP
+        //DETERMINE IF CLIENT HAS AUTHORIZATION
+        //CHANGE CODE ACCORDINGLY(200,403,404 etc)
         setHeader(valid);
         return valid;
 
@@ -38,16 +47,12 @@ public class httpRead {
 
     public String setHeader(boolean valid)
     {
-        int code=200;
-        String phrase="OK";
         if (valid!=true)
         {
-            //CHANGE CODE TO REFLECT CORRECT ERROR
             //CHANGE PHRASE TO BE NOT OK
+            //CHANGE PHRASE ACCORDINGLY
         }
 
-        String returncode=Integer.toString(code);
-        returnMSG+= "HTTP/1.0"+returncode+phrase;
         return returnMSG;
     }
 }
